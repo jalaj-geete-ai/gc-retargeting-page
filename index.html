@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Global Careers — We're Ready When You Are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#f97316;--accent2:#ea6a05;--accentd:#fff7ed;--accentl:#fed7aa;
+  --text:#0f172a;--muted:#64748b;--dim:#94a3b8;
+  --bg:#f8fafc;--bg2:#f1f5f9;--bg3:#e2e8f0;
+  --white:#ffffff;--border:#e2e8f0;--border2:#cbd5e1;
+  --green:#16a34a;--greend:#dcfce7;
+  --r:10px;--r2:12px;--r3:16px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo svg{width:28px;height:28px}
+.nav-brand{font-size:15px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.nav-tag{font-size:11px;font-weight:600;color:var(--accent);background:var(--accentd);border:1px solid var(--accentl);border-radius:20px;padding:2px 10px;letter-spacing:.04em}
+
+/* ── HERO ── */
+.hero{padding:52px 24px 40px;text-align:center;max-width:600px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--accentd);border:1px solid var(--accentl);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--accent);margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(26px,6vw,40px);font-weight:900;line-height:1.15;letter-spacing:-.025em;color:var(--text);margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto}
+
+/* ── LAYOUT ── */
+.page{max-width:760px;margin:0 auto;padding:0 16px 60px}
+
+/* ── CALLBACK CARD ── */
+.card{background:var(--white);border:1px solid var(--border2);border-radius:var(--r3);overflow:hidden;margin-bottom:20px;box-shadow:0 2px 12px rgba(15,23,42,.06)}
+.card-top{height:4px;background:var(--accent)}
+.card-body{padding:28px 24px}
+.card-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:4px;letter-spacing:-.02em}
+.card-sub{font-size:13px;color:var(--muted);margin-bottom:22px}
+
+.fl{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.fi{width:100%;border:1.5px solid var(--border2);border-radius:var(--r);padding:12px 14px;font-size:15px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s;background:var(--white)}
+.fi:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(249,115,22,.12)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:480px){.frow{grid-template-columns:1fr}}
+.fgroup{margin-bottom:14px}
+.phone-wrap{display:flex;gap:0}
+.pfx{display:flex;align-items:center;padding:0 13px;border:1.5px solid var(--border2);border-right:none;border-radius:var(--r) 0 0 var(--r);font-size:14px;font-weight:600;color:var(--muted);background:var(--bg2);white-space:nowrap}
+.phone-wrap .fi{border-radius:0 var(--r) var(--r) 0}
+
+/* Time slots */
+.slots-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;display:block}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.slot{padding:7px 14px;border:1.5px solid var(--border2);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;user-select:none;background:var(--white)}
+.slot:hover{border-color:var(--accentl);color:var(--accent);background:var(--accentd)}
+.slot.selected{border-color:var(--accent);color:var(--accent);background:var(--accentd)}
+
+.submit-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:15px;font-family:'Inter',sans-serif;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s,transform .1s,box-shadow .2s;box-shadow:0 4px 16px rgba(249,115,22,.3);letter-spacing:-.01em}
+.submit-btn:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(249,115,22,.38)}
+.submit-btn:disabled{background:var(--dim);box-shadow:none;cursor:not-allowed;transform:none}
+.ft{font-size:12px;color:var(--dim);text-align:center;margin-top:10px}
+
+/* ── SUCCESS STATE ── */
+.success{display:none;text-align:center;padding:32px 24px}
+.success-icon{width:56px;height:56px;background:var(--greend);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px}
+.success h3{font-size:20px;font-weight:800;color:var(--text);margin-bottom:6px}
+.success p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.success-divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+
+/* ── VIDEOS SECTION ── */
+.section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.section-title{font-size:22px;font-weight:900;letter-spacing:-.025em;color:var(--text);margin-bottom:4px}
+.section-title em{font-style:normal;color:var(--accent)}
+.section-sub{font-size:13.5px;color:var(--muted);margin-bottom:20px}
+
+.video-card{background:var(--white);border:1px solid var(--border2);border-radius:var(--r2);overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,23,42,.05);transition:box-shadow .2s,transform .2s}
+.video-card:hover{box-shadow:0 6px 20px rgba(15,23,42,.1);transform:translateY(-2px)}
+.video-header{padding:16px 18px 12px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.video-num{width:34px;height:34px;border-radius:50%;background:var(--accentd);border:1.5px solid var(--accentl);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--accent);flex-shrink:0}
+.video-meta{flex:1}
+.video-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px;letter-spacing:-.01em}
+.video-desc{font-size:12.5px;color:var(--muted)}
+.video-duration{font-size:12px;font-weight:600;color:var(--dim);background:var(--bg2);border-radius:20px;padding:3px 10px;white-space:nowrap}
+.video-toggle{font-size:18px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.video-toggle.open{transform:rotate(180deg)}
+
+.video-body{display:none;padding:0 18px 18px}
+.video-body.open{display:block}
+.video-wrap{position:relative;background:#000;border-radius:var(--r);overflow:hidden;aspect-ratio:16/9}
+.video-wrap video{width:100%;height:100%;display:block;object-fit:cover}
+.video-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);cursor:pointer;transition:background .2s}
+.video-overlay:hover{background:rgba(0,0,0,.2)}
+.play-btn{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .15s,background .15s}
+.play-btn:hover{transform:scale(1.08);background:#fff}
+.video-overlay.hidden{display:none}
+.vid-controls{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#0f172a;border-radius:0 0 var(--r) var(--r)}
+.vid-play-btn{width:32px;height:32px;background:none;border:none;cursor:pointer;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:.9}
+.vid-play-btn:hover{opacity:1}
+.vid-seek{flex:1;height:4px;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,.25);border-radius:2px;cursor:pointer;outline:none}
+.vid-seek::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer;margin-top:-5px}
+.vid-seek::-webkit-slider-runnable-track{height:4px;border-radius:2px}
+.vid-time{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap;font-variant-numeric:tabular-nums}
+.vid-vol{width:60px;height:4px;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,.25);border-radius:2px;cursor:pointer;outline:none}
+.vid-vol::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;cursor:pointer}
+.vid-mute{background:none;border:none;cursor:pointer;color:#fff;font-size:14px;opacity:.8;flex-shrink:0}
+.vid-mute:hover{opacity:1}
+.vid-fs{background:none;border:none;cursor:pointer;color:#fff;font-size:14px;opacity:.8;flex-shrink:0}
+.vid-fs:hover{opacity:1}
+.video-wrap{position:relative;background:#000;border-radius:var(--r) var(--r) 0 0;overflow:hidden;aspect-ratio:16/9}
+.video-progress{margin-top:10px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.progress-bar{flex:1;height:4px;background:var(--border2);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width .5s linear}
+.video-stats{display:flex;gap:12px;margin-top:8px}
+.vstat{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:4px}
+.vstat strong{color:var(--text);font-weight:700}
+
+/* ── TRUST BAR ── */
+.trust{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:28px 0 0}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#f97316"/><path d="M8 14.5l4.5 4.5L20 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="nav-brand">Global Careers</span>
+  </div>
+  <span class="nav-tag">Nurse Abroad Programme</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="badge-dot"></span>We haven't forgotten about you</div>
+  <h1>Your dream of working <em>abroad</em> is still possible.</h1>
+  <p class="hero-sub">You showed interest earlier — and we'd love to connect when the time is right for you. Book a callback, then explore our videos at your own pace.</p>
+</div>
+
+<div class="page">
+
+  <!-- ── CALLBACK CARD ── -->
+  <div class="card" id="callbackCard">
+    <div class="card-top"></div>
+    <div class="card-body">
+      <div class="card-title">📞 Request a Callback</div>
+      <div class="card-sub">Tell us your preferred time — we'll call you, no pressure.</div>
+
+      <div id="callbackForm">
+        <div class="frow">
+          <div class="fgroup">
+            <label class="fl">Full Name</label>
+            <input class="fi" id="cbName" type="text" placeholder="Your name" autocomplete="name"/>
+          </div>
+          <div class="fgroup">
+            <label class="fl">WhatsApp Number</label>
+            <div class="phone-wrap">
+              <span class="pfx">🇮🇳 +91</span>
+              <input class="fi" id="cbPhone" type="tel" placeholder="10-digit number" maxlength="10" inputmode="numeric"/>
+            </div>
+          </div>
+        </div>
+
+        <span class="slots-label">Preferred Time Slot</span>
+        <div class="slots" id="slotsGrid">
+          <div class="slot" data-slot="10:00 AM – 11:00 AM">10–11 AM</div>
+          <div class="slot" data-slot="11:00 AM – 12:00 PM">11 AM–12 PM</div>
+          <div class="slot" data-slot="12:00 PM – 1:00 PM">12–1 PM</div>
+          <div class="slot" data-slot="1:00 PM – 2:00 PM">1–2 PM</div>
+          <div class="slot" data-slot="2:00 PM – 3:00 PM">2–3 PM</div>
+          <div class="slot" data-slot="3:00 PM – 4:00 PM">3–4 PM</div>
+          <div class="slot" data-slot="4:00 PM – 5:00 PM">4–5 PM</div>
+          <div class="slot" data-slot="5:00 PM – 6:00 PM">5–6 PM</div>
+          <div class="slot" data-slot="6:00 PM – 7:00 PM">6–7 PM</div>
+          <div class="slot" data-slot="7:00 PM – 8:00 PM">7–8 PM</div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="submitCallback()">
+          <span>📞</span><span>Request Callback</span>
+        </button>
+        <p class="ft">🔒 No spam &nbsp;·&nbsp; 📵 No unsolicited calls &nbsp;·&nbsp; ✅ 100% free</p>
+      </div>
+
+      <div class="success" id="callbackSuccess">
+        <div class="success-icon">✅</div>
+        <h3>We'll call you soon!</h3>
+        <p id="successMsg">Our team will reach out during your preferred time slot.</p>
+        <hr class="success-divider"/>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:4px">While you wait — explore our videos below 👇</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIDEOS SECTION ── -->
+  <div id="videosSection">
+    <p class="section-label" style="margin-top:32px">Watch at your pace</p>
+    <h2 class="section-title">Three videos. <em>Real answers.</em></h2>
+    <p class="section-sub">No sales pitch — just honest information about working abroad as a nurse.</p>
+
+    <!-- Video 1 -->
+    <div class="video-card">
+      <div class="video-header" onclick="toggleVideo(1)">
+        <div class="video-num">1</div>
+        <div class="video-meta">
+          <div class="video-title">Nurses to Germany — Watch This First</div>
+          <div class="video-desc">Real salary, real timeline, real process — no agents, no pressure</div>
+        </div>
+        <span class="video-duration">~5 min</span>
+        <span class="video-toggle" id="toggle1">▾</span>
+      </div>
+      <div class="video-body" id="body1">
+        <div class="video-wrap">
+          <video id="vid1" preload="metadata" playsinline crossorigin="anonymous"
+            style="width:100%;height:100%;border-radius:var(--r);display:block">
+            <source src="https://pub-87bfe3daabb94289967c7c7c5a6c5d11.r2.dev/Germany%20jaane%20ki%20puri%20process%20is%20video%20mai.mp4" type="video/mp4"/>
+          </video>
+          <div class="video-overlay" id="overlay1" onclick="playVideo(1)">
+            <div class="play-btn">▶</div>
+          </div>
+        </div>
+        <div class="vid-controls">
+          <button class="vid-play-btn" id="playbtn1" onclick="togglePlay(1)">▶</button>
+          <span class="vid-time" id="cur1">0:00</span>
+          <input class="vid-seek" id="seek1" type="range" min="0" max="100" step="0.1" value="0" oninput="seekVideo(1, this.value)"/>
+          <span class="vid-time" id="tot1">0:00</span>
+          <button class="vid-mute" id="mutebtn1" onclick="toggleMute(1)">🔊</button>
+          <input class="vid-vol" id="vol1" type="range" min="0" max="1" step="0.05" value="1" oninput="setVolume(1, this.value)"/>
+          <button class="vid-fs" onclick="toggleFS(1)">⛶</button>
+        </div>
+        <div class="video-stats" style="padding:6px 4px 0">
+          <span class="vstat">👁️ Watched: <strong id="pct1">0%</strong></span>
+          <span class="vstat">⏱️ Time: <strong id="dur1">0m 0s</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card">
+      <div class="video-header" onclick="toggleVideo(2)">
+        <div class="video-num">2</div>
+        <div class="video-meta">
+          <div class="video-title">UK, Canada, Germany & Gulf — Country Comparison</div>
+          <div class="video-desc">Which country is actually best for Indian nurses? Real numbers, honest answer</div>
+        </div>
+        <span class="video-duration">~6 min</span>
+        <span class="video-toggle" id="toggle2">▾</span>
+      </div>
+      <div class="video-body" id="body2">
+        <div class="video-wrap">
+          <video id="vid2" preload="metadata" playsinline crossorigin="anonymous"
+            style="width:100%;height:100%;display:block">
+            <source src="https://pub-87bfe3daabb94289967c7c7c5a6c5d11.r2.dev/Shubham%20Long%205%20min%20Video.mp4.mp4" type="video/mp4"/>
+          </video>
+          <div class="video-overlay" id="overlay2" onclick="playVideo(2)">
+            <div class="play-btn">▶</div>
+          </div>
+        </div>
+        <div class="vid-controls">
+          <button class="vid-play-btn" id="playbtn2" onclick="togglePlay(2)">▶</button>
+          <span class="vid-time" id="cur2">0:00</span>
+          <input class="vid-seek" id="seek2" type="range" min="0" max="100" step="0.1" value="0" oninput="seekVideo(2, this.value)"/>
+          <span class="vid-time" id="tot2">0:00</span>
+          <button class="vid-mute" id="mutebtn2" onclick="toggleMute(2)">🔊</button>
+          <input class="vid-vol" id="vol2" type="range" min="0" max="1" step="0.05" value="1" oninput="setVolume(2, this.value)"/>
+          <button class="vid-fs" onclick="toggleFS(2)">⛶</button>
+        </div>
+        <div class="video-stats" style="padding:6px 4px 0">
+          <span class="vstat">👁️ Watched: <strong id="pct2">0%</strong></span>
+          <span class="vstat">⏱️ Time: <strong id="dur2">0m 0s</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card">
+      <div class="video-header" onclick="toggleVideo(3)">
+        <div class="video-num">3</div>
+        <div class="video-meta">
+          <div class="video-title">🎬 Live Webinar — Nurses to Germany</div>
+          <div class="video-desc">Full webinar session — process, salary, visa, Q&A with real nurses</div>
+        </div>
+        <span class="video-duration">~45 min</span>
+        <span class="video-toggle" id="toggle3">▾</span>
+      </div>
+      <div class="video-body" id="body3">
+        <div class="video-wrap">
+          <video id="vid3" preload="metadata" playsinline crossorigin="anonymous"
+            style="width:100%;height:100%;display:block">
+            <source src="https://pub-87bfe3daabb94289967c7c7c5a6c5d11.r2.dev/Shivangi%20Nursing%20Long%20video%20(1)-compressed.mp4" type="video/mp4"/>
+          </video>
+          <div class="video-overlay" id="overlay3" onclick="playVideo(3)">
+            <div class="play-btn">▶</div>
+          </div>
+        </div>
+        <div class="vid-controls">
+          <button class="vid-play-btn" id="playbtn3" onclick="togglePlay(3)">▶</button>
+          <span class="vid-time" id="cur3">0:00</span>
+          <input class="vid-seek" id="seek3" type="range" min="0" max="100" step="0.1" value="0" oninput="seekVideo(3, this.value)"/>
+          <span class="vid-time" id="tot3">0:00</span>
+          <button class="vid-mute" id="mutebtn3" onclick="toggleMute(3)">🔊</button>
+          <input class="vid-vol" id="vol3" type="range" min="0" max="1" step="0.05" value="1" oninput="setVolume(3, this.value)"/>
+          <button class="vid-fs" onclick="toggleFS(3)">⛶</button>
+        </div>
+        <div class="video-stats" style="padding:6px 4px 0">
+          <span class="vstat">👁️ Watched: <strong id="pct3">0%</strong></span>
+          <span class="vstat">⏱️ Time: <strong id="dur3">0m 0s</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust">
+    <span class="trust-item">🔒 Your data is safe</span>
+    <span class="trust-item">📵 No spam calls</span>
+    <span class="trust-item">🌍 500+ nurses placed</span>
+    <span class="trust-item">✅ 100% free guidance</span>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL = 'https://lrcimdchhbsgbnvdmpwd.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyY2ltZGNoaGJzZ2JudmRtcHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MzAwMzcsImV4cCI6MjA5MDAwNjAzN30.1MfNvTNGTUNuUIL-lN3vZH7Kpcn6t1naiq07KTUEDEk';
+const { createClient } = window.supabase;
+const db = createClient(SB_URL, SB_KEY);
+
+const VIDEO_NAMES = {
+  1: 'Germany for Nurses — The Real Picture',
+  2: 'UK, Canada & Gulf — Country Comparison',
+  3: 'Real Stories — Nurses in Germany'
+};
+
+// UTM params
+const p = new URLSearchParams(location.search);
+const utmSource   = p.get('utm_source')   || 'direct';
+const utmMedium   = p.get('utm_medium')   || '';
+const utmCampaign = p.get('utm_campaign') || '';
+const phone_pre   = p.get('phone') || ''; // pre-fill from retargeting link
+
+if (phone_pre) document.getElementById('cbPhone').value = phone_pre.replace(/\D/g,'').slice(-10);
+
+// Slot selection
+let selectedSlot = '';
+document.querySelectorAll('.slot').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSlot = el.dataset.slot;
+  });
+});
+
+// ── SUBMIT CALLBACK ──
+let submittedPhone = '';
+async function submitCallback() {
+  const name  = document.getElementById('cbName').value.trim();
+  const phone = document.getElementById('cbPhone').value.replace(/\D/g,'').trim();
+
+  if (!name)            return shake('cbName', 'Please enter your name');
+  if (phone.length !== 10) return shake('cbPhone', 'Enter a valid 10-digit number');
+  if (!selectedSlot)    return alert('Please select a preferred time slot');
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>⏳</span><span>Submitting...</span>';
+
+  try {
+    await db.from('v2_staging').insert({
+      name,
+      phone,
+      source: 'retargeting',
+      status: 'pending',
+      source_detail: {
+        funnel: 'retargeting-callback',
+        page: 'retargeting-lp-v1',
+        preferred_slot: selectedSlot,
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
+        submitted_at: new Date().toISOString(),
+        landing_url: location.href,
+      }
+    });
+
+    submittedPhone = phone;
+    document.getElementById('successMsg').textContent =
+      `Our team will call you between ${selectedSlot}. We'll also send a WhatsApp confirmation.`;
+    document.getElementById('callbackForm').style.display = 'none';
+    document.getElementById('callbackSuccess').style.display = 'block';
+
+    // Track event
+    try { await db.from('events').insert({ event_name: 'retargeting_callback_submitted',
+      event_value: { name, phone, slot: selectedSlot, utm_source: utmSource } }); } catch(e) {}
+
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '<span>📞</span><span>Request Callback</span>';
+    alert('Something went wrong. Please try again.');
+  }
+}
+
+function shake(id, msg) {
+  const el = document.getElementById(id);
+  el.style.borderColor = '#ef4444';
+  el.style.animation = 'none';
+  setTimeout(() => el.style.borderColor = '', 1500);
+  el.focus();
+  alert(msg);
+}
+
+// ── VIDEO TOGGLE ──
+function toggleVideo(n) {
+  const body   = document.getElementById('body'    + n);
+  const toggle = document.getElementById('toggle'  + n);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+}
+
+// ── VIDEO TRACKING ──
+const videoState = { 1:{watched:0,started:false}, 2:{watched:0,started:false}, 3:{watched:0,started:false} };
+let saveTimer = null;
+
+function playVideo(n) {
+  const vid     = document.getElementById('vid' + n);
+  const overlay = document.getElementById('overlay' + n);
+  overlay.classList.add('hidden');
+  vid.play();
+  document.getElementById('playbtn' + n).textContent = '⏸';
+  if (!videoState[n].started) {
+    videoState[n].started = true;
+    trackVideoEvent(n, 'start');
+  }
+  vid.ontimeupdate = () => updateProgress(n);
+  vid.onpause = () => {
+    document.getElementById('playbtn' + n).textContent = '▶';
+    saveVideoStats(n, 'pause');
+  };
+  vid.onplay = () => { document.getElementById('playbtn' + n).textContent = '⏸'; };
+  vid.onended = () => {
+    document.getElementById('playbtn' + n).textContent = '▶';
+    saveVideoStats(n, 'complete');
+  };
+  vid.onloadedmetadata = () => {
+    document.getElementById('tot' + n).textContent = fmt(vid.duration);
+    document.getElementById('seek' + n).max = vid.duration;
+  };
+}
+
+function togglePlay(n) {
+  const vid = document.getElementById('vid' + n);
+  const overlay = document.getElementById('overlay' + n);
+  if (vid.paused) {
+    vid.play();
+    overlay.classList.add('hidden');
+  } else {
+    vid.pause();
+  }
+}
+
+function seekVideo(n, val) {
+  const vid = document.getElementById('vid' + n);
+  vid.currentTime = parseFloat(val);
+}
+
+function toggleMute(n) {
+  const vid = document.getElementById('vid' + n);
+  vid.muted = !vid.muted;
+  document.getElementById('mutebtn' + n).textContent = vid.muted ? '🔇' : '🔊';
+}
+
+function setVolume(n, val) {
+  const vid = document.getElementById('vid' + n);
+  vid.volume = parseFloat(val);
+  vid.muted = val == 0;
+  document.getElementById('mutebtn' + n).textContent = val == 0 ? '🔇' : '🔊';
+}
+
+function toggleFS(n) {
+  const wrap = document.getElementById('vid' + n).closest('.video-wrap');
+  if (!document.fullscreenElement) {
+    (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+  } else {
+    (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+  }
+}
+
+function updateProgress(n) {
+  const vid   = document.getElementById('vid' + n);
+  const pct   = vid.duration ? vid.currentTime / vid.duration * 100 : 0;
+  document.getElementById('cur'   + n).textContent = fmt(vid.currentTime);
+  document.getElementById('pct'   + n).textContent = Math.round(pct) + '%';
+  document.getElementById('dur'   + n).textContent = fmt(videoState[n].watched);
+  const seek = document.getElementById('seek' + n);
+  if (!seek.matches(':active')) seek.value = vid.currentTime;
+  if (vid.currentTime > videoState[n].watched) videoState[n].watched = vid.currentTime;
+
+  // Save every 15s
+  if (!saveTimer) saveTimer = setInterval(() => { [1,2,3].forEach(i => saveVideoStats(i, 'heartbeat')); }, 15000);
+}
+
+async function saveVideoStats(n, event) {
+  const vid     = document.getElementById('vid' + n);
+  const dur     = vid.duration || 0;
+  const watched = videoState[n].watched;
+  const pct     = dur ? Math.round(watched / dur * 100) : 0;
+  if (!watched) return;
+
+  const phone = submittedPhone || phone_pre.replace(/\D/g,'').slice(-10);
+  db.from('events').insert({
+    event_name: 'retargeting_video_' + event,
+    event_value: {
+      video_id: n,
+      video_name: VIDEO_NAMES[n],
+      phone: phone || null,
+      utm_source: utmSource,
+      watch_seconds: Math.round(watched),
+      total_duration: Math.round(dur),
+      progress_pct: pct,
+      event_time: new Date().toISOString(),
+    }
+  }).catch(() => {});
+
+  // Also upsert into video_stats if we have a phone
+  if (phone && dur) {
+    // Try to find user_id by phone, then upsert video_stats
+    db.from('users').select('id').eq('phone', phone).single().then(({ data: u }) => {
+      if (!u) return;
+      db.from('video_stats').upsert({
+        user_id: u.id,
+        video_id: 'retargeting_v' + n,
+        total_watch_time: Math.round(watched),
+        max_progress_percent: pct,
+        last_watched_at: new Date().toISOString(),
+      }, { onConflict: 'user_id,video_id' }).catch(() => {});
+    }).catch(() => {});
+  }
+}
+
+async function trackVideoEvent(n, event) {
+  try { await db.from('events').insert({
+    event_name: 'retargeting_video_' + event,
+    event_value: { video_id: n, video_name: VIDEO_NAMES[n], utm_source: utmSource, event_time: new Date().toISOString() }
+  }); } catch(e) {}
+}
+
+function fmt(s) {
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return m + ':' + String(sec).padStart(2, '0');
+}
+
+// Save on page unload
+window.addEventListener('beforeunload', () => { [1,2,3].forEach(n => saveVideoStats(n, 'exit')); });
+
+// ── YOUTUBE TRACKING (shared for videos 1 & 2) ──
+const ytState = {
+  1: { watched: 0, duration: 0, pctEl: 'pct1', durEl: 'dur1' },
+  2: { watched: 0, duration: 0, pctEl: 'pct2', durEl: 'dur2' },
+};
+
+function startYTTracking(n, frameId, pctId, durId) {
+  // postMessage polling for YouTube progress
+  setInterval(() => {
+    const iframe = document.getElementById(frameId);
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage('{"event":"command","func":"getPlayerState","args":""}', '*');
+    }
+  }, 2000);
+}
+
+
+
+function onYouTubeIframeAPIReady() {
+  // Auto-attach if iframe already has src
+}
+
+window.addEventListener('message', function(e) {
+  if (!e.data) return;
+  let data;
+  try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch(err) { return; }
+  if (data.event === 'infoDelivery' && data.info) {
+    const info = data.info;
+    if (info.currentTime !== undefined) {
+      // Detect which YT frame sent this by checking both
+      [1, 2].forEach(n => {
+        const st = ytState[n];
+        const ct = info.currentTime;
+        if (ct > st.watched) st.watched = ct;
+        if (info.duration) st.duration = info.duration;
+        const pct = st.duration ? Math.round(st.watched / st.duration * 100) : 0;
+        const pctEl = document.getElementById(st.pctEl);
+        const durEl = document.getElementById(st.durEl);
+        if (pctEl && pct > 0) pctEl.textContent = pct + '%';
+        if (durEl && st.watched > 0) durEl.textContent = fmt(st.watched);
+      });
+    }
+  }
+}, false);
+
+// Save YT stats every 15s for videos 1 & 2
+setInterval(async () => {
+  const phone = submittedPhone || phone_pre.replace(/\D/g,'').slice(-10);
+  for (const n of [1, 2]) {
+    const st = ytState[n];
+    if (st.watched > 0) {
+      const pct = st.duration ? Math.round(st.watched / st.duration * 100) : 0;
+      try {
+        await db.from('events').insert({
+          event_name: 'retargeting_video_heartbeat',
+          event_value: {
+            video_id: n, video_name: VIDEO_NAMES[n], phone: phone || null,
+            utm_source: utmSource, watch_seconds: Math.round(st.watched),
+            total_duration: Math.round(st.duration), progress_pct: pct,
+            event_time: new Date().toISOString()
+          }
+        });
+      } catch(e) {}
+    }
+  }
+}, 15000);
+
+// Track page visit
+(async () => {
+  try { await db.from('events').insert({ event_name: 'retargeting_page_view',
+    event_value: { utm_source: utmSource, utm_campaign: utmCampaign, landing_url: location.href } }); } catch(e) {}
+})();
+</script>
+</body>
+</html>
